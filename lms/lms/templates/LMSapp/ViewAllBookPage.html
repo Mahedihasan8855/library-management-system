@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>     
+{% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
+{% block body %}
+    <h1>ViewAllBookPage</h1>
+    
+       {% for item in books %}
+  <!--Section: Content-->
+  <section class="dark-grey-text">
+
+    
+
+    <!-- Grid row -->
+    <div class="row align-items-center">
+
+      <!-- Grid column -->
+      <div class="col-lg-5">
+
+        <!-- Featured image -->
+        <div class="view overlay rounded z-depth-2 mb-lg-0 mb-4">
+         
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+      </div>
+      <!-- Grid column -->
+
+      <!-- Grid column -->
+      <div class="col-lg-7">
+
+        <!-- Category -->
+        
+        <!-- Post title -->
+        <h4 class="font-weight-bold mb-3"><strong>{{item.BookName}}</strong></h4>
+        <!-- Excerpt -->
+        <p>{{item.BookID}}</p>
+        <!-- Post data -->
+        <p>by <a><strong></strong></a>,<br> {{item.Author1}}</p>
+        <!-- Read more button -->
+        <a class="btn btn-success btn-md btn-rounded mx-0" href="http://127.0.0.1:8000/admin/LMSapp/book_registration/">Read more / Edit</a>
+
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row -->
+
+    <hr class="my-5">
+    
+  </section>
+  {% if forloop.counter|divisibleby:2 %}
+
+</div>
+
+<div class="container mt-5">
+    {% endif %}
+
+    {% endfor %}
+{% endblock body %}
+    

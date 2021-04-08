@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>     
+{% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
+{% block body %}
+<style>
+    table {
+        margin-top: 10px;
+    }
+
+    .customers {
+        text-align: center;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        font-weight: bolder;
+        overflow-x: auto;
+    }
+
+    .customers td,
+    .customers th {
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+
+    .customers tr:nth-child(even) {
+        background-color: #f5c2c2;
+    }
+
+    .customers tr:hover {
+        background-color: rgb(243, 156, 156);
+    }
+
+    .customers th {
+        padding-top: 5px;
+        padding-bottom: 5px;
+        background-color: #ef5c55;
+        color: white;
+    }
+</style>
+<div class="container my-4">
+    <h3>Please Enter Carefully <b>Book ID/Number</b></h3>
+    <hr>
+    <form action="BookIssueToStudent_BookIDCheck" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="BookID">Enter Book ID/Number</label>
+            <input type="text" class="form-control" value="{{BookID}}" id="BookID" name="BookIssueToStudent_BookIDCheck"
+                placeholder="Book ID/Number">
+        </div>
+        <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+    </form>
+    <div class="customers">
+        <table>
+            <tr>
+                <th>Student Registration Number</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Phone 1</th>
+                <th>Phone 2</th>
+                <th>Email</th>
+                <th>City</th>
+            </tr>
+            <tr>
+                <td>{{RegNumber}}</td>
+                <td>{{fname}}</td>
+                <td>{{mname}}</td>
+                <td>{{lname}}</td>
+                <td>{{Phone1}}</td>
+                <td>{{Phone2}}</td>
+                <td>{{email}}</td>
+                <td>{{city}}</td>
+            </tr>
+        </table>
+
+        <table>
+            <tr>
+                <th>District</th>
+                <th>State</th>
+                <th>Pin</th>
+                <th>Current Address</th>
+                <th>Permanent Address</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Gender</th>
+            </tr>
+            <tr>
+                <td>{{district}}</td>
+                <td>{{state}}</td>
+                <td>{{pin}}</td>
+                <td>{{Current_Address}}</td>
+                <td>{{Permanent_Address}}</td>
+                <td>{{Course}}</td>
+                <td>{{Year}}</td>
+                <td>{{Branch}}</td>
+                <td>{{Gender}}</td>
+            </tr>
+        </table>
+<hr>
+        <table>
+            <tr>
+                <th>Book ID</th>
+                <th>Name</th>
+                <th>Author 1</th>
+                <th>Author 2</th>
+                <th>Publisher</th>
+                <th>Page</th>
+                <th>Price</th>
+                <th>Book Belongs To Course</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>{{BookID}}</td>
+                <td>{{BookName}}</td>
+                <td>{{Author1}}</td>
+                <td>{{Author2}}</td>
+                <td>{{Publisher}}</td>
+                <td>{{Page}}</td>
+                <td>{{Price}}</td>
+                <td>{{BookBelongsCourse}}</td>
+                <td>{{date}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="container d-flex justify-content-center my-3">
+    <form action="/BookIssued" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Book Issue" class="btn btn-primary btn-lg">
+    </form>
+</div>
+{% endblock body %}

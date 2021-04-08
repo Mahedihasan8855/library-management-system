@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>
+{% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
+{% load static %}
+
+{% block body %}
+<div class="container my-4">
+    <h3>Please Enter Carefully <b>Student Library Registration Number</b></h3>
+    <hr>
+    <form action="BookSubmitByStudent_Id_Check" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="RegNumber">Enter Student Registration Number</label>
+            <input type="text" class="form-control" required autofocus id="RegNumber"
+                value="{{Data.0.Student_Registration_Number}}" name="BookSubmitByStudent"
+                placeholder="Student Library Registration Number">
+        </div>
+        <button type="submit" class="btn btn-primary mx-auto d-block">Check</button>
+    </form>
+</div>
+<div class="container">
+    <div class="text-center">
+        <h3>Student Information</h3>
+    </div>
+    <table class="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Student Registration Number</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Phone 1</th>
+                <th>Phone 2</th>
+                <th>Email</th>
+                <th>City</th>
+                <th>District</th>
+                <th>State</th>
+                <th>Pin</th>
+                <th>Current Address</th>
+                <th>Permanent Address</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Branch</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{Data.0.Student_Registration_Number}}</td>
+                <td>{{Data.0.fname}}</td>
+                <td>{{Data.0.mname}}</td>
+                <td>{{Data.0.lname}}</td>
+                <td>{{Data.0.Phone1}}</td>
+                <td>{{Data.0.Phone2}}</td>
+                <td>{{Data.0.email}}</td>
+                <td>{{Data.0.city}}</td>
+                <td>{{Data.0.district}}</td>
+                <td>{{Data.0.state}}</td>
+                <td>{{Data.0.pin}}</td>
+                <td>{{Data.0.Current_Address}}</td>
+                <td>{{Data.0.Permanent_Address}}</td>
+                <td>{{Data.0.Course}}</td>
+                <td>{{Data.0.Year}}</td>
+                <td>{{Data.0.Branch}}</td>
+                <td>{{Data.0.Gender}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center mt-3">
+        <h3>Book Information</h3>
+    </div>
+    <table class="example" class="display" style="width:100%">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Name</th>
+                <th>Author 1</th>
+                <th>Author 2</th>
+                <th>Publisher</th>
+                <th>Page</th>
+                <th>Price</th>
+                <th>Book Belongs To Course</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in Data %}
+            <tr>
+                <td>{{book.BookID}}</td>
+                <td>{{book.BookName}}</td>
+                <td>{{book.Author1}}</td>
+                <td>{{book.Author2}}</td>
+                <td>{{book.Publisher}}</td>
+                <td>{{book.Page}}</td>
+                <td>{{book.Price}}</td>
+                <td>{{book.BookBelongsCourse}}</td>
+                <td>{{book.Book_Issue_To_Student_Date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+
+</div>
+
+
+<div class="container my-4">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <form action="/BookSubmitted" method="post">
+                {% csrf_token %}
+                <label for="BookNum"><b>Enter Book Id to submit a particular book</b></label>
+                <input type="text" class="form-control" id="BookNum" name="BookIdSubmission"
+                    placeholder="Enter Book ID to submit the book">
+                <div class="text-center mt-3">
+                    <input type="submit" value="Book Submit" class="btn btn-info">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-6 text-center m-auto">
+            <form action="SubmitAllBooks" method="post">
+                {% csrf_token %}
+                <input type="submit" value="Submit All Books" class="btn btn-danger btn-lg">
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

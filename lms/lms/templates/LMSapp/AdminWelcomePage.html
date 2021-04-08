@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>     
+{% endblock Loggout %}
+{% block body %}
+<link rel="stylesheet" href="{% static 'css/AdminWelcomePage.css' %}">
+
+<div class="container">
+    </div><br><br>
+    <h3 class="font-weight-normal text-center dark-grey-text pb-2 display-4"><strong>Welcome Admin!</strong></h3>
+    <hr>
+    <br><br>
+    <div class="row">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/StudentRegistrationPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="Student Registration">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookIssueToStudent" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-success btn-css" value="Book Issue to Student">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookSubmitByStudent" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-warning btn-css" value="Book Submit by Student">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/FacultyRegistrationPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-info btn-css" value="Faculty Registration">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookIssueToFaculty" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-dark btn-css" value="Book Issue to Faculty">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookSubmitByFaculty" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-info btn-css" value="Book Submit by Faculty">
+            </form>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/BookRegistrationPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-warning btn-css" value="Book Registration">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/ViewAllBookPage" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-success btn-css" value="View All Books">
+            </form>
+        </div>
+        <div class="mb-4 text-center col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12">
+            <form action="/ViewBooksByBranch" method="POST">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-primary btn-css" value="View Books By Branch">
+            </form>
+        </div>
+    </div>
+
+</div>
+<hr>
+
+
+{% endblock body %}
+

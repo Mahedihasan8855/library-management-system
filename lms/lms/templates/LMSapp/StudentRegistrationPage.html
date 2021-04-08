@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% block Loggout %}
+<a href="/logout" class="btn btn-success">Logout</a>     
+{% endblock Loggout %}
+
+{% block AdminWelcomePage %}
+<form action="MainPage" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Main" class="btn btn-info m-2 my-sm-0">
+</form>
+{% endblock AdminWelcomePage %}
+
+{% block body %}
+<div class="container my-4">
+  <script src="{% static 'js/StudentRegistrationPage.js' %}"></script>
+  <h2>Please Fill Student Details Carefully:</h2>
+  <hr>
+  <form action="Student_Registration_Data" method="POST">
+    {% csrf_token %}
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="fname">First Name</label>
+        <input type="text" class="form-control" id="fname" name="fname">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="mname">Middle Name</label>
+        <input type="text" class="form-control" id="mname" name="mname">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="lname">Last Name</label>
+        <input type="text" class="form-control" id="lname" name="lname">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="Phone1">Phone 1</label>
+        <input type="text" class="form-control" id="Phone1" name="Phone1">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="Phone2">Phone 2</label>
+        <input type="text" class="form-control" id="Phone2" name="Phone2">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Email">Email Address</label>
+        <input type="email" class="form-control" id="Email" aria-describedby="emailHelp" name="email">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" name="city">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="District">District</label>
+        <input type="text" class="form-control" id="District" name="district">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="State">State</label>
+        <select class="form-control" id="State" name="state">
+          <option hidden>Please select your state</option>
+          <option>Uttar Pradesh</option>
+          <option>Uttrakhand</option>
+          <option>Haryana</option>
+          <option>Delhi</option>
+          <option>Maharastra</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="PIN/ZIP">PIN/ZIP Code</label>
+        <input type="text" class="form-control" id="PIN/ZIP" name="pin">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="CurrentAddress">Current Address</label>
+      <input type="text" class="form-control" name="CurrentAddress" id="CurrentAddress" placeholder="1234 Main St">
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck" onclick="fun1()">
+        <label class="form-check-label" for="gridCheck">
+          If your <b>Current Address</b> is same as <b>Permanent Address</b>, if yes then check it, else uncheck it.
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="PermanentAddress">Permanent Address</label>
+      <input type="text" class="form-control" id="PermanentAddress" placeholder="Apartment, studio, or floor"
+        name="PermanentAddress">
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-xl-3 col-lg-3">
+        <label for="Course">Course</label>
+        <select class="form-control" id="Course" name="Course">
+          <option hidden>Select Course</option>
+          <option>BBA</option>
+          <option>MBA</option>
+          <option>MCA</option>
+          <option>BCA</option>
+          <option>B.Com</option>
+        </select>
+      </div>
+
+      <div class="form-group col-xl-2 col-lg-2">
+        <label for="Year">Year</label>
+        <select class="form-control" id="Year" name="Year">
+          <option hidden>Select Year</option>
+          <option>1st</option>
+          <option>2nd</option>
+          <option>3rd</option>
+          <option>4th</option>
+          <option>5th</option>
+        </select>
+      </div>
+
+      <div class="form-group col-xl-4 col-lg-4">
+        <label for="Branch">Branch</label>
+        <select class="form-control" id="Branch" name="Branch">
+          <option hidden>Select Branch</option>
+          <option>Computer Science Engineering</option>
+          <option>Electronic Engineering</option>
+          <option>Machanical Engineering</option>
+        </select>
+      </div>
+
+
+      <div class="form-group col-xl-3 col-lg-3">
+        <label for="Gender">Gender</label>
+        <select class="form-control" id="Gender" name="Gender">
+          <option hidden>Select Gender</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Others</option>
+        </select>
+      </div>
+    </div>
+    <div class="text-center">
+    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+  </div>
+  </form>
+</div>
+{% endblock body %}
